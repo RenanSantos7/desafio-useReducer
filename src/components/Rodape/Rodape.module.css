@@ -1,0 +1,48 @@
+.rodape {
+    display: flex;
+    justify-content: space-around;
+    background-color: #000000;
+    color: var(--bg-principal);
+    padding: 3em 0;
+}
+
+.titulo {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.lista li {
+    margin: 1em 0;
+}
+
+.link {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    text-decoration: none;
+    color: #fafafa;
+}
+
+.redesSociais {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    margin-top: .6em;
+    font-size: 28px;
+    line-height: 36px;
+}
+
+@media screen and (max-width: 798px) {
+    .rodape {
+        display: block;
+        padding: 1em;
+    }
+
+    .redesSociais {
+        display: block;
+    }
+}

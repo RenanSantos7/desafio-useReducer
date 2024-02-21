@@ -1,1 +1,39 @@
 @import url('https://renan-santos.netlify.app/styles/reset.css');
+@import url('https://fonts.googleapis.com/css2?family=BioRhyme:wght@800&family=Inter:wght@300;700&family=Montserrat:wght@400;500;600&display=swap');
+
+:root {
+    --fonte-logo: 'Inter', sans-serif;
+    --azul-claro: #6BD1FF;
+    --bg-principal: #FFFFFF;
+    --texto: #000000;
+    --vermelho: red;
+    --larguraPag: min(90%, 1400px)
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;;
+    color: var(--texto);
+    font-size: 16px;
+    background-color: var(--bg-principal);
+}
+
+a {
+    text-decoration: none;
+}
+
+input {
+    background-color: transparent;
+    color: var(--preto)
+}
+
+input[type=submit] {
+    cursor: pointer;
+}
+
+input.invalid {
+    border-color: var(--vermelho);
+}
+
+ul {
+    list-style: none;
+}

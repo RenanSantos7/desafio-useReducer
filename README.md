@@ -6,6 +6,8 @@ Pedi ao Windows Copilot um desafio de React em que eu usasse o hook useReducer p
 
 Este repositório contém a solução desse desafio.
 
+Para a interface, reutilizei parcialmente a do projeto [RBank](https://github.com/RenanSantos7/rbank) e incluí outras.
+
 ## Tecnologias utilizadas
 
 - React (Create React App)
@@ -18,6 +20,7 @@ O deploy do projeto foi feito pelo [Netilify](https://www.netlify.com/) e está 
 
 O deploy do projeto foi feito pela [Vercel](https://vercel.com/) e está disponível em https://cinetag-renansantos7.vercel.app/
 -->
+
 ## Como rodar localmente
 
 Este projeto foi criado usando [Vite](https://vite.dev), portanto você pode seguir a documentação desse script para fazer deploy do site localmente.

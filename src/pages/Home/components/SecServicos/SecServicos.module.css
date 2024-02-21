@@ -1,0 +1,32 @@
+.servicos {
+    width: var(--larguraPag);
+    margin-inline: auto;
+}
+
+.titulo {
+    font-size: 28px;
+    text-align: center;
+    font-weight: 600;
+    margin: 1em 0;
+}
+
+.listaServicos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 4em 0;
+}
+
+.subtitulo {
+    background-color: var(--texto);
+    color: var(--bg-principal);
+    font-weight: 600;
+    font-size: 24px;
+    text-align: center;
+    padding: .5em 0;
+    border-radius: 0px 0px 20px 20px;
+}
+
+.imagem {
+    display: block;
+}

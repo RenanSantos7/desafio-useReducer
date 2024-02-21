@@ -1,0 +1,11 @@
+.logoNegrito {
+	font-weight: 700;
+	font-family: 'BioRhyme';
+	font-size: 1.2em;
+}
+
+.logoFinal {
+	font-weight: 400;
+	font-style: italic;
+    font-family: var(--fonte-logo);
+}

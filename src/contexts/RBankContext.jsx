@@ -1,4 +1,4 @@
-import { createContext, useCallback, useEffect, useReducer, useState } from "react"
+import { createContext, useCallback, useEffect, useMemo, useReducer, useState } from "react"
 import { transacoesReducer } from "../app/reducers";
 import { Transacao } from "../app/models";
 
@@ -6,7 +6,7 @@ export const RBankContext = createContext();
 RBankContext.displayName = "RBank"
 
 export const RBankProvider = ({ children }) => {
-    const transacoes = useMemo(() => [], [])
+    let transacoes = useMemo(() => [], [])
 
     const [contas, dispatch] = useReducer(transacoesReducer, [])
 

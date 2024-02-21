@@ -1,0 +1,59 @@
+.beneficios {
+    width: var(--larguraPag);
+    margin-inline: auto;
+}
+
+.titulo {
+    font-size: 28px;
+    text-align: center;
+    font-weight: 600;
+    margin: 1em 0;
+}
+
+.lista {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin-block: 4em;
+    text-align: center;
+}
+
+.item {
+    width: 20%;
+
+    p {
+        line-height: 1.2;
+    }
+}
+
+.subtitulo {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    color: var(--azul-claro);
+    margin: .5em 0;
+}
+
+.icone {
+    width: 80px;
+    height: 80px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: inline-block;
+}
+
+.iconePresente {
+    background-image: url('img/Presente.png');
+}
+
+.iconeSaque {
+    background-image: url('img/Saque.png');
+}
+
+.iconeEstrela {
+    background-image: url('img/Estrela.png')
+}
+
+.iconeGato {
+    background-image: url('img/Gato.png')
+}
