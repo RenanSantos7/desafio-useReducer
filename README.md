@@ -44,4 +44,4 @@ O terminal mostrará o endereço para acessar o site no qual você pode clicar p
 
 ## Licensa
 
-O projeto está disponível publicamente com a licença [GNU](./LICENSE)
+O projeto está disponível publicamente com a licença [GPL 3.O](./LICENSE)
