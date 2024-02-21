@@ -1,0 +1,13 @@
+.breadcrumb {
+    display: flex;
+    gap: .5rem;
+    color: var(--azul-claro);
+}
+
+.linkDestacado {
+    font-weight: bold;
+}
+
+.linkOculto {
+    display: none;
+}

@@ -1,0 +1,20 @@
+.ciente {
+	display: flex;
+	gap: 0.5rem;
+	align-items: flex-start;
+}
+
+.ciente input[type='checkbox'] {
+	accent-color: var(--azul-claro);
+	margin-top: 5px;
+}
+
+.texto {
+	line-height: 1.5;
+}
+
+.mensagemErro {
+	display: none;
+	margin-top: 0.5em;
+	color: var(--vermelho);
+}

@@ -26,7 +26,7 @@ export default function Cabecalho() {
                 </li>
                 <li>
                     <Link
-                        href="${urlPaginas}abrir-conta-form.html"
+                        to='/abrir-conta/passo1'
                         className={`${styles.botao} ${styles.botaoAzul}`}
                     >Abrir conta</Link>
                 </li>
