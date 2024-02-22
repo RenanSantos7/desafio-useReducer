@@ -3,9 +3,12 @@
 
 :root {
     --fonte-logo: 'Inter', sans-serif;
-    --azul-claro: #6BD1FF;
+    --accent-color: #6BD1FF;
     --bg-principal: #FFFFFF;
     --texto: #000000;
+    --cinza1: #eee;
+    --cinza2: #bbb;
+    --cinza3: #777;
     --vermelho: red;
     --larguraPag: min(90%, 1400px)
 }
@@ -15,6 +18,9 @@
         --bg-principal: #2b2b2b;
         --texto: #f0f0f0;
         --vermelho: hsl(0, 100%, 70%);
+        --cinza1: #3c3c3c;
+        --cinza2: #555;
+        --cinza3: #777;
     }
 }
 

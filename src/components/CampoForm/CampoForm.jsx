@@ -4,7 +4,9 @@ export default function CampoForm({
     tipo = 'texto',
     titulo,
     valor,
-    setValor
+    setValor,
+    placeholder = '',
+    obrigatorio = true
 }) {
     return (
         <fieldset className={styles.campo}>
@@ -13,10 +15,11 @@ export default function CampoForm({
                 <input
                     type={tipo}
                     minLength={5}
-                    required
+                    required={obrigatorio}
                     className={styles.input}
                     value={valor}
                     onChange={evt => setValor(evt.target.value)}
+                    placeholder={placeholder}
                 />
             </label>
             <div className={styles.mensagemErro}></div>

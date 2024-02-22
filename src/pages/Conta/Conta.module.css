@@ -1,0 +1,51 @@
+.container {
+    width: var(--larguraPag);
+    margin-inline: auto;
+    padding-block: 2rem 4rem;
+}
+
+.titulo {
+    font-size: 2rem;
+    font-weight: 400;
+    color:var(--accent-color)
+}
+
+.corpo {
+    display: flex;
+    gap: 2rem;
+    padding-block: 2rem;
+}
+
+.painelLateral {
+    width: 200px;
+    background-color: var(--cinza1);
+    padding: 1.5rem 1rem;
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.infoConta {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.main {
+    flex-grow: 1;
+}
+
+.subtitulo {
+    font-weight: 500;
+    font-size: 1.5rem;
+    margin-bottom: 1em;
+}
+
+.operacoes {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100px;
+    margin-bottom: 1.2rem;
+}

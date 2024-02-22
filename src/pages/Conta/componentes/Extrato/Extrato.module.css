@@ -1,0 +1,17 @@
+.extrato {
+    width: 100%;
+
+    th, td {
+        padding: 1rem;
+        text-align: center;
+    }
+
+    th {
+        background-color: var(--accent-color);
+        color: var(--bg-principal);
+    }
+
+    td {
+        border: 1px solid var(--cinza2);
+    }
+}

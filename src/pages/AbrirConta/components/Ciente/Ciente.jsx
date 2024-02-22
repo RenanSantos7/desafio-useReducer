@@ -8,6 +8,7 @@ export default function Ciente({valor, setValor}) {
                 type='checkbox'
                 checked={valor}
                 onChange={() => setValor(!valor)}
+                required
             />
             <div className={styles.texto}>
                 <p>Li e estou ciente quanto às condições de tratamento dos meus dados conforme descrito na Política de Privacidade do banco.</p>

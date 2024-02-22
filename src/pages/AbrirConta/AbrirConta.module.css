@@ -8,7 +8,7 @@
     width: 30vw;
 }
 
-.formContainer {
+.formCabecalho {
     margin: 3em 0;
     text-align: center;
 
@@ -24,11 +24,20 @@
 	line-height: 1.2;
 }
 
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem
+}
+
 .mensagemErro {
     color: var(--vermelho);
     line-height: 1.25rem;
 }
 
-.botao {
-    margin: 2em auto;
+.botaoSubmeter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120px;
 }

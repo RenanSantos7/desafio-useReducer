@@ -1,0 +1,12 @@
+.card {
+    border: 2px solid var(--cinza2);
+    border-radius: 20px;
+    padding: 2rem;
+    background-color: var(--cinza1);
+}
+
+.titulo {
+    color: var(--accent-color);
+    margin-bottom: 2rem;
+    text-align: center;
+}

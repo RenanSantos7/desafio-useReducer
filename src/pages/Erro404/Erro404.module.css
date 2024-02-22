@@ -1,0 +1,21 @@
+.container {
+    margin-inline: auto;
+    padding-block: 4rem;
+    width: min(90%, 600px);
+
+    h2 {
+        font-weight: 500;
+        color: var(--accent-color);
+        font-size: 2.2rem;
+        margin-bottom: 1em;
+    }
+
+    p {
+        line-height: 1.25;
+        margin-bottom: 1em;
+    }
+
+    button {
+        margin-top: 2rem;
+    }
+}

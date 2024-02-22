@@ -1,6 +1,8 @@
 import { createContext, useCallback, useEffect, useMemo, useReducer, useState } from "react"
 import { transacoesReducer } from "../app/reducers";
 import { Transacao } from "../app/models";
+import { carregarDoLocalStorage } from '../utils/gerenciarLS'
+import { salvarNoLocalStorage } from '../utils/gerenciarLS'
 
 export const RBankContext = createContext();
 RBankContext.displayName = "RBank"
@@ -8,7 +10,13 @@ RBankContext.displayName = "RBank"
 export const RBankProvider = ({ children }) => {
     let transacoes = useMemo(() => [], [])
 
-    const [contas, dispatch] = useReducer(transacoesReducer, [])
+    //const estadoInicial = carregarDoLocalStorage("contas") || []
+
+    const conta1 = {_id: 68780, _saldo: 0, _extrato: [], _titular:{nome: 'Fulano de Tal'}}
+
+    const estadoInicial = [conta1]
+
+    const [contas, dispatch] = useReducer(transacoesReducer, estadoInicial)
 
     const geraIdUnico = useCallback(tipo => {
         let idGerado = 0
@@ -32,18 +40,20 @@ export const RBankProvider = ({ children }) => {
         return contas.some(conta => conta.id === id)
     }, [contas, transacoes])
 
-    const criarConta = useCallback(nome => {
+    const criarConta = useCallback(pessoa => {
         dispatch({
             tipo: 'criarConta',
             id: geraIdUnico('conta'),
-            titular: nome
+            titular: pessoa
         })
     }, [])
 
+    // % Depósito
     const depositar = useCallback((valor, id) => {
         const novaTransacao = new Transacao(
             geraIdUnico('transacao'),
             valor,
+            'Depósito',
             id
         )
 
@@ -60,10 +70,12 @@ export const RBankProvider = ({ children }) => {
 
     }, [contas, transacoes])
 
+    // % Saque
     const saque = useCallback((valor, id) => {
         const novaTransacao = new Transacao(
             geraIdUnico('transacao'),
             valor,
+            'Saque',
             id
         )
 
@@ -80,10 +92,12 @@ export const RBankProvider = ({ children }) => {
 
     }, [contas, transacoes])
 
+    // % Transferência
     const trasferencia = useCallback((valor, idOrigem, idDestino) => {
         const novaTransacao = new Transacao(
             geraIdUnico('transacao'),
             valor,
+            'Transferência',
             idOrigem,
             idDestino
         )
@@ -104,6 +118,7 @@ export const RBankProvider = ({ children }) => {
 
     }, [contas, transacoes])
 
+    // % Efeitos
     useEffect(() => {
         dispatch({
             tipo: 'extrato',
@@ -111,11 +126,21 @@ export const RBankProvider = ({ children }) => {
         })
     }, [transacoes])
 
+    /* 
+    useEffect(() => {
+        salvarNoLocalStorage('contas', contas)
+    }, [contas]) 
+    */
+
+    // % Retornos
     return (
         <RBankContext.Provider value={{
             criarConta,
             depositar,
-            saque
+            saque,
+            trasferencia,
+            contas,
+            transacoes
         }}>
             {children}
         </RBankContext.Provider>

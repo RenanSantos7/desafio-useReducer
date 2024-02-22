@@ -1,10 +1,13 @@
 import styles from './AbrirConta.module.css'
 import Banner from '../../components/Banner/Banner'
 import Breadcrumb from './components/Breadcrumb/Breadcrumb'
-import CampoForm from './components/CampoForm/CampoForm'
+import CampoForm from '../../components/CampoForm/CampoForm'
 import Ciente from './components/Ciente/Ciente'
 import Botao from '../../components/Botao/Botao'
-import { useState } from 'react'
+import { Cliente } from '../../app/models'
+import { useContext, useState } from 'react'
+import { RBankContext } from '../../contexts/RBankContext'
+import { useNavigate } from 'react-router-dom'
 
 export default function AbrirConta() {
 
@@ -15,6 +18,24 @@ export default function AbrirConta() {
     const [nascimento, setNascimento] = useState('')
     const [ciente, setCiente] = useState(false)
 
+    const { criarConta } = useContext(RBankContext)
+    
+    const navegar = useNavigate()
+
+    function submeter(evt) {
+        evt.preventDefault()
+        const novoCliente = new Cliente(
+            nome,
+            email,
+            rg,
+            cpf,
+            nascimento,
+            ciente
+        )
+        criarConta(novoCliente)
+        navegar('/abrir-conta/confirmacao')
+    }
+
     return (
         <>
             <Banner />
@@ -22,7 +43,7 @@ export default function AbrirConta() {
                 <Breadcrumb />
 
                 <section className={styles.formulario}>
-                    <div className={styles.formContainer}>
+                    <div className={styles.formCabecalho}>
                         <img
                             src="/img/status-1.png"
                             alt="Etapa um de três"
@@ -30,13 +51,13 @@ export default function AbrirConta() {
                         <h2 className={styles.titulo}>Preencha os campos abaixo para criar sua conta corrente!</h2>
                     </div>
 
-                    <form>
+                    <form onSubmit={submeter} className={styles.form}>
                         <CampoForm
                             titulo='Nome'
                             valor={nome}
                             setValor={setNome}
                         />
-                        
+
                         <CampoForm
                             titulo='Email'
                             tipo='email'
@@ -60,11 +81,17 @@ export default function AbrirConta() {
                             titulo='Data de nascimento'
                             valor={nascimento}
                             setValor={setNascimento}
+                            tipo='date'
                         />
 
-                        <Ciente />
+                        <Ciente
+                            valor={ciente}
+                            setValor={setCiente}
+                        />
 
-                        <Botao type='submit' className={styles.botao}>Criar Conta</Botao>
+                        <div className={styles.botaoSubmeter}>
+                            <Botao type='submit'>Criar Conta</Botao>
+                        </div>
                     </form>
                 </section>
             </div>

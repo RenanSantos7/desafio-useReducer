@@ -1,5 +1,5 @@
 .botao {
-	background: var(--azul-claro);
+	background: var(--accent-color);
 	display: block;
 	border: none;
 	padding: 1em 4em;

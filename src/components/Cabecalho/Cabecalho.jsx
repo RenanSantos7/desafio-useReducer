@@ -31,7 +31,7 @@ export default function Cabecalho() {
                     >Abrir conta</Link>
                 </li>
                 <li>
-                    <a href="${urlPaginas}login.html" className="botao">Acessar conta</a>
+                    <Link to='/acessar-conta'>Acessar conta</Link>
                 </li>
             </ul>
         </header>

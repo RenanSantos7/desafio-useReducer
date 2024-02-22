@@ -5,7 +5,7 @@
 }
 
 .ciente input[type='checkbox'] {
-	accent-color: var(--azul-claro);
+	accent-color: var(--accent-color);
 	margin-top: 5px;
 }
 

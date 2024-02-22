@@ -56,16 +56,16 @@ export default function Rodape() {
                     ${styles.redesSociais}
                 `}>
                     <li>
-                        <img src='img/Facebook.png' alt='ícone do facebook' />
+                        <img src='/img/Facebook.png' alt='ícone do facebook' />
                     </li>
                     <li>
-                        <img src='img/Youtube.png' alt='ícone do youtube' />
+                        <img src='/img/Youtube.png' alt='ícone do youtube' />
                     </li>
                     <li>
-                        <img src='img/Whatsapp.png' alt='ícone do whatsapp' />
+                        <img src='/img/Whatsapp.png' alt='ícone do whatsapp' />
                     </li>
                     <li>
-                        <img src='img/Instagram.png' alt='ícone do instagram' />
+                        <img src='/img/Instagram.png' alt='ícone do instagram' />
                     </li>
                 </ul>
                 <h2 className={styles.logo}>
