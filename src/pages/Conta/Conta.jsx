@@ -22,7 +22,7 @@ export default function Conta() {
 
     useEffect(() => {
         console.log(conta)
-    }, [])
+    }, [conta])
 
     if (!conta) {
         return <Erro404 />

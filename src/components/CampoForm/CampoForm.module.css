@@ -18,6 +18,11 @@
 	width: 100%;
 	padding: 1em;
 	margin-top: .5em;
+	transition: outline ease-out .3s;
+}
+
+.input:focus-visible {
+	outline: 2px solid var(--accent-color);
 }
 
 .input::placeholder {

@@ -9,7 +9,7 @@ export default function SecServicos() {
                 <li>
                     <img
                         className={styles.imagem}
-                        src="img/cartao-credito.png"
+                        src="img/cartao.png"
                         alt="uma mulher segurando um cartão de crédito"
                     />
                     <h3 className={styles.subtitulo}>Cartão de crédito</h3>
@@ -18,7 +18,7 @@ export default function SecServicos() {
                 <li>
                     <img
                         className={styles.imagem}
-                        src="img/conta-corrente.png"
+                        src="img/conta_corrente.png"
                         alt="um homem sentado com o notebook em seu colo"
                     />
                     <h3 className={styles.subtitulo}>Conta corrente</h3>
@@ -27,7 +27,7 @@ export default function SecServicos() {
                 <li>
                     <img
                         className={styles.imagem}
-                        src="img/conta-pj.png"
+                        src="img/conta_pj.png"
                         alt="uma mulher segurando um tablet e uma caneta"
                     />
                     <h3 className={styles.subtitulo}>Conta PJ</h3>
