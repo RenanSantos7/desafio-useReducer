@@ -4,13 +4,13 @@
     background-color: #000000;
     color: var(--bg-principal);
     padding: 3em 0;
+    color: #fafafa;
 }
 
 .titulo {
     font-weight: 700;
     font-size: 18px;
     line-height: 22px;
-    color: var(--texto)
 }
 
 .lista li {
@@ -22,7 +22,6 @@
     font-size: 16px;
     line-height: 20px;
     text-decoration: none;
-    color: #fafafa;
 }
 
 .redesSociais {
@@ -35,7 +34,6 @@
     margin-top: .6em;
     font-size: 28px;
     line-height: 36px;
-    color: var(--texto)
 }
 
 @media screen and (max-width: 798px) {

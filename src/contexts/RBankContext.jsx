@@ -1,4 +1,4 @@
-import { createContext, useCallback, useEffect, useMemo, useReducer, useState } from "react"
+import { createContext, useEffect, useReducer } from "react"
 import { transacoesReducer } from "../app/reducers";
 import { Transacao } from "../app/models";
 import { carregarDoLocalStorage } from '../utils/gerenciarLS'
@@ -8,17 +8,14 @@ export const RBankContext = createContext();
 RBankContext.displayName = "RBank"
 
 export const RBankProvider = ({ children }) => {
-    let transacoes = useMemo(() => [], [])
+    let transacoes = []
 
-    //const estadoInicial = carregarDoLocalStorage("contas") || []
-
-    const conta1 = {_id: 68780, _saldo: 0, _extrato: [], _titular:{nome: 'Fulano de Tal'}}
-
-    const estadoInicial = [conta1]
-
+    const conta1 = { _id: 68780, _saldo: 0, _extrato: [], _titular: { nome: 'Fulano de Tal' } }
+    const contasLocalSt = carregarDoLocalStorage("contas") || []
+    const estadoInicial = [conta1, contasLocalSt]
     const [contas, dispatch] = useReducer(transacoesReducer, estadoInicial)
 
-    const geraIdUnico = useCallback(tipo => {
+    function geraIdUnico(tipo) {
         let idGerado = 0
 
         if (tipo === 'conta') {
@@ -34,22 +31,22 @@ export const RBankProvider = ({ children }) => {
         }
 
         return idGerado
-    }, [contas, transacoes])
+    }
 
-    const existeConta = useCallback(id => {
-        return contas.some(conta => conta.id === id)
-    }, [contas, transacoes])
+    function existeConta(id) {
+        return contas.some(conta => conta._id === id)
+    }
 
-    const criarConta = useCallback(pessoa => {
+    function criarConta(pessoa) {
         dispatch({
             tipo: 'criarConta',
             id: geraIdUnico('conta'),
             titular: pessoa
         })
-    }, [])
+    }
 
     // % Depósito
-    const depositar = useCallback((valor, id) => {
+    function depositar(valor, id) {
         const novaTransacao = new Transacao(
             geraIdUnico('transacao'),
             valor,
@@ -58,20 +55,22 @@ export const RBankProvider = ({ children }) => {
         )
 
         if (!existeConta(id)) {
-            console.error('Conta não encontrada')
+            console.error('Conta não encontrada. Verifique o ID informado')
         } else {
             dispatch({
                 tipo: 'deposito',
                 valor: valor,
                 idOrigem: id
             })
+
             transacoes = [...transacoes, novaTransacao]
+            console.log(transacoes)
         }
 
-    }, [contas, transacoes])
+    }
 
     // % Saque
-    const saque = useCallback((valor, id) => {
+    function sacar(valor, id) {
         const novaTransacao = new Transacao(
             geraIdUnico('transacao'),
             valor,
@@ -80,7 +79,7 @@ export const RBankProvider = ({ children }) => {
         )
 
         if (!existeConta(id)) {
-            console.error('Conta não encontrada')
+            console.error('Conta não encontrada. Verifique o ID informado')
         } else {
             dispatch({
                 tipo: 'saque',
@@ -88,12 +87,13 @@ export const RBankProvider = ({ children }) => {
                 idOrigem: id
             })
             transacoes = [...transacoes, novaTransacao]
+            console.log(transacoes)
         }
 
-    }, [contas, transacoes])
+    }
 
     // % Transferência
-    const trasferencia = useCallback((valor, idOrigem, idDestino) => {
+    function transferir(valor, idOrigem, idDestino) {
         const novaTransacao = new Transacao(
             geraIdUnico('transacao'),
             valor,
@@ -103,9 +103,9 @@ export const RBankProvider = ({ children }) => {
         )
 
         if (!existeConta(idOrigem)) {
-            console.error('Conta de origem não encontrada')
+            console.error('Conta de origem não encontrada. Verifique o ID informado')
         } else if (!existeConta(idDestino)) {
-            console.error('Conta de destino não encontrada')
+            console.error('Conta de destino não encontrada. Verifique o ID informado')
         } else {
             dispatch({
                 tipo: 'trasferencia',
@@ -114,9 +114,10 @@ export const RBankProvider = ({ children }) => {
                 idDestino: idDestino
             })
             transacoes = [...transacoes, novaTransacao]
+            console.log(transacoes)
         }
 
-    }, [contas, transacoes])
+    }
 
     // % Efeitos
     useEffect(() => {
@@ -126,19 +127,19 @@ export const RBankProvider = ({ children }) => {
         })
     }, [transacoes])
 
-    /* 
+
     useEffect(() => {
         salvarNoLocalStorage('contas', contas)
-    }, [contas]) 
-    */
+    }, [contas])
+
 
     // % Retornos
     return (
         <RBankContext.Provider value={{
             criarConta,
             depositar,
-            saque,
-            trasferencia,
+            sacar,
+            transferir,
             contas,
             transacoes
         }}>

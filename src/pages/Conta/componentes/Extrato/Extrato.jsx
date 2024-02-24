@@ -1,15 +1,13 @@
-import { useContext } from 'react'
+import { useContext, useEffect, useMemo } from 'react'
 import styles from './Extrato.module.css'
 import { RBankContext } from '../../../../contexts/RBankContext'
 
 export default function Extrato({ contaSelecionada }) {
 
-    const { transacoes } = useContext(RBankContext)
-    const transacoesFiltradas = [...transacoes.filter(transacao => (
-        transacao._idDestino == contaSelecionada._id
-        ||
-        transacao._idOrigem == contaSelecionada._id
-    ))]
+    useEffect(() => {
+        console.log('extrato');
+        console.log(contaSelecionada._extrato)
+    }, [contaSelecionada._extrato])
 
     return (
         <>
@@ -24,8 +22,8 @@ export default function Extrato({ contaSelecionada }) {
                     </tr>
                 </thead>
                 <tbody>
-                    {transacoesFiltradas.length > 0
-                        ? transacoesFiltradas.map(transacao => (
+                    {contaSelecionada._extrato.length > 0
+                        ? contaSelecionada._extrato.map(transacao => (
                             <tr>
                                 <td>{transacao._id}</td>
                                 <td>{transacao._valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</td>
@@ -44,17 +42,3 @@ export default function Extrato({ contaSelecionada }) {
         </>
     )
 }
-
-
-/*
-
-export class Transacao {
-    constructor(id, valor, idOrigem, idDestino) {
-        this._id = id
-        this._valor = valor
-        this._idOrigem = idOrigem
-        this._idDestino = idDestino
-    }
-}
-
-*/

@@ -1,29 +1,32 @@
 import styles from './Conta.module.css'
 import { useParams } from 'react-router-dom'
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { RBankContext } from '../../contexts/RBankContext'
 import Erro404 from '../Erro404/Erro404'
 import Rodape from '../../components/Rodape/Rodape'
 import Cabecalho from './componentes/Cabecalho/Cabecalho'
 import Extrato from './componentes/Extrato/Extrato'
 import Botao from '../../components/Botao/Botao'
+import Modal from './componentes/Modal/Modal'
 
 export default function Conta() {
     const params = useParams()
-    const {
-        contas,
-        depositar,
-        saque,
-        trasferencia,
-    } = useContext(RBankContext)
+    const { contas } = useContext(RBankContext)
 
     const conta = contas.find(conta => (
         conta._id == params.conta
     ))
 
+    // 'deposito' | 'saque' | 'transferencia'
+    const [operacao, setOperacao] = useState('')
+
+    useEffect(() => {
+        console.log(conta)
+    }, [])
+
     if (!conta) {
         return <Erro404 />
-    }
+    }    
 
     return (
         <>
@@ -56,9 +59,17 @@ export default function Conta() {
 
                         <h3 className={styles.subtitulo}>Operações</h3>
                         <div className={styles.operacoes}>
-                            <Botao>Depósito</Botao>
-                            <Botao>Saque</Botao>
-                            <Botao>Transferência</Botao>
+                            <Botao
+                                aoClicar={() => setOperacao('deposito')}
+                            >Depósito</Botao>
+
+                            <Botao
+                                aoClicar={() => setOperacao('saque')}
+                            >Saque</Botao>
+
+                            <Botao
+                                aoClicar={() => setOperacao('trasferencia')}
+                            >Transferência</Botao>
                         </div>
 
                         <h3 className={styles.subtitulo}>Extrato</h3>
@@ -66,6 +77,14 @@ export default function Conta() {
                     </main>
                 </div>
             </div>
+
+            {operacao.length > 0 &&
+                <Modal
+                    operacao={operacao}
+                    aberto={setOperacao}
+                    conta={conta}
+                />
+            }
             <Rodape />
         </>
     )

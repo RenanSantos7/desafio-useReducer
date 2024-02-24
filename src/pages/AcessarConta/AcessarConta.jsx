@@ -25,6 +25,7 @@ export default function AcessarConta() {
                         titulo='Número da conta'
                         valor={contaAtual}
                         setValor={setContaAtual}
+                        min={1}
                     />
 
                     <CampoForm

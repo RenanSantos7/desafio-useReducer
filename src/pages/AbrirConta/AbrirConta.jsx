@@ -56,6 +56,7 @@ export default function AbrirConta() {
                             titulo='Nome'
                             valor={nome}
                             setValor={setNome}
+                            obrigatorio = {true}
                         />
 
                         <CampoForm

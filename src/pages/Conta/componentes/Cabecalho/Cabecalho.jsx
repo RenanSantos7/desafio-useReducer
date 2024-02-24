@@ -13,8 +13,14 @@ export default function Cabecalho() {
                 </h1>
             </Link>
 
-            <Link to='/'>
-                <FontAwesomeIcon className={styles.sair} icon={faArrowRightToBracket} />
+            <Link
+                to='/'
+                title='Sair da conta e voltar para a home'
+            >
+                <FontAwesomeIcon
+                    className={styles.sair}
+                    icon={faArrowRightToBracket}
+                />
             </Link>
         </header>
     )
