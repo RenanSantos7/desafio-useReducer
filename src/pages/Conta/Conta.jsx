@@ -10,12 +10,15 @@ import Botao from '../../components/Botao/Botao'
 import Modal from './componentes/Modal/Modal'
 
 export default function Conta() {
-    const params = useParams()
     const { contas } = useContext(RBankContext)
+    
+    const params = useParams()
 
-    const conta = contas.find(conta => (
-        conta._id == params.conta
-    ))
+    const [conta, setConta] = useState(conta, setConta(contas.find(
+        conta => (
+            conta._id == params.conta
+        )
+    )))
 
     // 'deposito' | 'saque' | 'transferencia'
     const [operacao, setOperacao] = useState('')
@@ -24,7 +27,7 @@ export default function Conta() {
         console.log(conta)
     }, [conta])
 
-    if (!conta) {
+    if (contas.includes(conta => conta._id === params.conta)) {
         return <Erro404 />
     }    
 

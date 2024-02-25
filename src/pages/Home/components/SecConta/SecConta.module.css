@@ -1,42 +1,41 @@
 .conta {
-    background-image: url("img/banner-gato.png");
+    background-image: url("./banner.png");
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
-    height: 500px;
+    height: 450px;
 }
 
 .container {
     width: var(--larguraPag);
     margin-inline: auto;
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 60% 40%;
     align-items: center;
     height: 100%;
 }
 
 .wrapper {
     width: 80%;
-    margin-left: 4em;
     margin-block: 2rem;
 }
 
 .subtitulo {
 	font-weight: 600;
-	color: var(--branco);
+	color: var(--bg-principal);
 	font-size: 32px;
 	line-height: 39px;
 }
 
 .botao {
     display: block;
-    margin-top: 1em;
+    margin-top: 2rem;
     padding: 1em 1.5em;
     width: fit-content;
     text-align: center;
-    background: var(--texto);
+    background: var(--bg-principal);
     border-radius: 60px;
-    color: var(--bg-principal);
-    font-weight: 600;
+    color: var(--accent-color);
+    font-weight: 700;
     font-size: 18px;
 }

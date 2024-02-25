@@ -1,12 +1,22 @@
-import styles from './Logo.module.css'
-
 export default function Logo() {
+    const logoNegrito = {
+        fontWeight: 700,
+        fontFamily: 'BioRhyme',
+        fontSize: '1.2em',
+    }
+
+    const logoFinal = {
+        fontWeight: 400,
+        fontStyle: 'italic',
+        fontFamily: 'var(--fonte-logo)'
+    }
+
     return (
         <>
-            <span className={styles.logoNegrito}>
+            <span style={logoNegrito}>
                 R
             </span>
-            <span className={styles.logoFinal}>
+            <span style={logoFinal}>
                 bank
             </span>
         </>

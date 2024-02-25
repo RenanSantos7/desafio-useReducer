@@ -1,13 +1,6 @@
-import { useContext, useEffect, useMemo } from 'react'
 import styles from './Extrato.module.css'
-import { RBankContext } from '../../../../contexts/RBankContext'
 
 export default function Extrato({ contaSelecionada }) {
-
-    useEffect(() => {
-        console.log('extrato');
-        console.log(contaSelecionada._extrato)
-    }, [contaSelecionada._extrato])
 
     return (
         <>

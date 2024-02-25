@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import styles from './Cabecalho.module.css'
 import Logo from '../Logo/Logo'
+import { HashLink } from 'react-router-hash-link'
 
 export default function Cabecalho() {
     return (
@@ -15,7 +16,7 @@ export default function Cabecalho() {
                     <a>Sobre</a>
                 </li>
                 <li>
-                    <Link to='/servicos'>Serviços</Link>
+                    <HashLink to='/#servicos'>Serviços</HashLink>
                 </li>
                 <li>
                     <input
