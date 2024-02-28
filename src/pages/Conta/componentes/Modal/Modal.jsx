@@ -5,12 +5,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { useContext, useState, useEffect } from 'react'
 import { RBankContext } from '../../../../contexts/RBankContext'
+import CampoMoeda from '../../../../components/CampoMoeda/CampoMoeda'
 
 export default function Modal({ operacao, aberto, conta }) {
 
-    useEffect(() => {
+    /* useEffect(() => {
         console.log(conta)
-    }, [])
+    }, []) */
 
     const [valorOperacao, setValorOperacao] = useState(0)
     const [destino, setDestino] = useState(0)
@@ -29,24 +30,27 @@ export default function Modal({ operacao, aberto, conta }) {
         evt.preventDefault()
         depositar(valorOperacao, conta._id)
         console.log(`Depósito de R$ ${valorOperacao} na conta nº ${conta._id}`)
-        setValorOperacao(0)
         fechar()
     }
 
     function fazerSaque(evt) {
         evt.preventDefault()
         sacar(valorOperacao, conta._id)
-        setValorOperacao(0)
         fechar()
     }
 
     function fazerTransferencia(evt) {
         evt.preventDefault()
         transferir(valorOperacao, conta._id, destino)
-        setValorOperacao(0)
-        setDestino(0)
         fechar()
     }
+    
+    useEffect(() => {
+        return () => {
+            setValorOperacao(0)
+            setDestino(0)
+        }
+    }, [])
 
     return (
         <div className={styles.modalContainer}>
@@ -65,12 +69,11 @@ export default function Modal({ operacao, aberto, conta }) {
                     ? <>
                         <h3 className={styles.titulo}>Depósito</h3>
                         <form className={styles.form} onSubmit={fazerDeposito}>
-                            <CampoForm
-                                min={1}
-                                titulo='Valor'
-                                placeholder='Separe os decimais com ponto'
+                            <CampoMoeda
+                                label='Valor do depósito'
                                 valor={valorOperacao}
                                 setValor={setValorOperacao}
+                                autofoco={true}
                             />
 
                             <Botao
@@ -82,12 +85,11 @@ export default function Modal({ operacao, aberto, conta }) {
                         ? <>
                             <h3 className={styles.titulo}>Saque</h3>
                             <form className={styles.form} onSubmit={fazerSaque}>
-                                <CampoForm
-                                    min={1}
+                                <CampoMoeda
                                     titulo='Valor'
-                                    placeholder='Separe os decimais com ponto'
                                     valor={valorOperacao}
                                     setValor={setValorOperacao}
+                                    autofoco={true}
                                 />
 
                                 <Botao
@@ -95,16 +97,15 @@ export default function Modal({ operacao, aberto, conta }) {
                                 >Sacar</Botao>
                             </form>
                         </>
-                        : operacao === 'trasferencia'
+                        : operacao === 'transferencia'
                             ? <>
                                 <h3 className={styles.titulo}>Transferência</h3>
                                 <form className={styles.form} onSubmit={fazerTransferencia}>
-                                    <CampoForm
-                                        min={1}
+                                    <CampoMoeda
                                         titulo='Valor'
-                                        placeholder='Separe os decimais com ponto'
                                         valor={valorOperacao}
                                         setValor={setValorOperacao}
+                                        autofoco={true}
                                     />
 
                                     <CampoForm
@@ -117,7 +118,7 @@ export default function Modal({ operacao, aberto, conta }) {
 
                                     <Botao
                                         type='submit'
-                                    >Sacar</Botao>
+                                    >Transferir</Botao>
                                 </form>
                             </>
                             : null

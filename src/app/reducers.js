@@ -1,8 +1,8 @@
 import { Conta } from "./models"
 
 export function transacoesReducer(contas, operacao) {
-    const contaOrigem = contas.find(conta => conta._id === operacao.idOrigem)
-    const contaDestino = contas.find(conta => conta._id === operacao.idDestino)
+    const contaOrigem = contas.find(conta => conta._id == operacao.idOrigem)
+    const contaDestino = contas.find(conta => conta._id == operacao.idDestino)
     
     switch (operacao.tipo) {
         case 'criarConta': {
@@ -19,9 +19,9 @@ export function transacoesReducer(contas, operacao) {
         case 'saque':
             contaOrigem._saldo -= Number(operacao.valor)
             break
-        case 'transferência':
-            contaOrigem._saldo -= Number(operacao.valor)
-            contaDestino._saldo += Number(operacao.valor)
+        case 'transferencia':
+            contaOrigem._saldo -= operacao.valor
+            contaDestino._saldo += operacao.valor
             break
         case 'extrato':
             contas.map(conta => {

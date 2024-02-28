@@ -7,7 +7,8 @@ export default function CampoForm({
     setValor,
     placeholder = '',
     obrigatorio = false,
-    min = 5
+    min = 5,
+    autofoco= false
 }) {
     return (
         <fieldset className={styles.campo}>
@@ -21,6 +22,7 @@ export default function CampoForm({
                     value={valor === 0 ? '' : valor}
                     onChange={evt => setValor(evt.target.value)}
                     placeholder={placeholder}
+                    autoFocus={autofoco}
                 />
             </label>
             <div className={styles.mensagemErro}></div>

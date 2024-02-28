@@ -8,28 +8,37 @@ import Cabecalho from './componentes/Cabecalho/Cabecalho'
 import Extrato from './componentes/Extrato/Extrato'
 import Botao from '../../components/Botao/Botao'
 import Modal from './componentes/Modal/Modal'
+import PainelLateral from './componentes/PainelLateral/PainelLateral'
 
 export default function Conta() {
+    const [forceUpdate, setForceUdpate] = useState(false)
+
     const { contas } = useContext(RBankContext)
-    
+
     const params = useParams()
 
-    const [conta, setConta] = useState(conta, setConta(contas.find(
+    const contaAtual = contas.find(
         conta => (
             conta._id == params.conta
         )
-    )))
+    )
 
     // 'deposito' | 'saque' | 'transferencia'
     const [operacao, setOperacao] = useState('')
 
-    useEffect(() => {
-        console.log(conta)
-    }, [conta])
+    /* useEffect(() => {
+        console.log(contaAtual._extrato)
+    }, [contaAtual]) */
 
-    if (contas.includes(conta => conta._id === params.conta)) {
+
+    /* if (contas.includes(conta => conta._id === params.conta)) {
+        console.error('Conta não encontrada.')
         return <Erro404 />
-    }    
+    } */
+
+    useEffect(() => {
+        document.title = `RBank - conta nº ${contaAtual._id}`
+    }, [])
 
     return (
         <>
@@ -37,26 +46,7 @@ export default function Conta() {
             <div className={styles.container}>
                 <h2 className={styles.titulo}>Minha conta R</h2>
                 <div className={styles.corpo}>
-                    <aside className={styles.painelLateral}>
-                        <article className={styles.infoConta}>
-                            <h3>Conta</h3>
-                            <p>nº {conta._id}</p>
-                        </article>
-
-                        <article className={styles.infoConta}>
-                            <h3>Titular</h3>
-                            <p>{conta._titular.nome}</p>
-                        </article>
-
-                        <article className={styles.infoConta}>
-                            <h3>Saldo</h3>
-                            <p>{conta._saldo
-                                .toLocaleString('pt-BR', {
-                                    style: 'currency',
-                                    currency: 'BRL'
-                                })}</p>
-                        </article>
-                    </aside>
+                    <PainelLateral conta={contaAtual} />
 
                     <main className={styles.main}>
 
@@ -71,12 +61,12 @@ export default function Conta() {
                             >Saque</Botao>
 
                             <Botao
-                                aoClicar={() => setOperacao('trasferencia')}
+                                aoClicar={() => setOperacao('transferencia')}
                             >Transferência</Botao>
                         </div>
 
                         <h3 className={styles.subtitulo}>Extrato</h3>
-                        <Extrato contaSelecionada={conta} />
+                        <Extrato contaSelecionada={contaAtual} key={forceUpdate}/>
                     </main>
                 </div>
             </div>
@@ -85,7 +75,9 @@ export default function Conta() {
                 <Modal
                     operacao={operacao}
                     aberto={setOperacao}
-                    conta={conta}
+                    conta={contaAtual}
+                    update={forceUpdate}
+                    setUpdate={setForceUdpate}
                 />
             }
             <Rodape />

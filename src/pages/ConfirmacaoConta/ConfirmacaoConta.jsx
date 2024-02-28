@@ -20,14 +20,16 @@ export default function ConfirmacaoConta() {
             <h1>Parabéns, sua conta foi criada!</h1>
             <Card titulo='Sua nova conta R'>
                 <table className={styles.tabela}>
-                    <tr>
-                        <th>Número da conta</th>
-                        <td>{ultimaConta._id}</td>
-                   </tr>
-                    <tr>
-                        <th>Titular</th>
-                        <td>{ultimaConta._titular.nome}</td>
-                   </tr>
+                    <tbody>
+                        <tr>
+                            <th>Número da conta</th>
+                            <td>{ultimaConta._id}</td>
+                       </tr>
+                        <tr>
+                            <th>Titular</th>
+                            <td>{ultimaConta._titular._nome}</td>
+                       </tr>
+                    </tbody>
                 </table>
             </Card>
 

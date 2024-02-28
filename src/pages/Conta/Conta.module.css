@@ -16,22 +16,6 @@
     padding-block: 2rem;
 }
 
-.painelLateral {
-    width: 200px;
-    background-color: var(--cinza1);
-    padding: 1.5rem 1rem;
-    border-radius: 18px;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-.infoConta {
-    display: flex;
-    flex-direction: column;
-    gap: .5rem;
-}
-
 .main {
     flex-grow: 1;
 }
@@ -48,4 +32,22 @@
     align-items: center;
     height: 100px;
     margin-bottom: 1.2rem;
+}
+
+.extrato {
+    width: 100%;
+
+    th, td {
+        padding: 1rem;
+        text-align: center;
+    }
+
+    th {
+        background-color: var(--accent-color);
+        color: var(--bg-principal);
+    }
+
+    td {
+        border: 1px solid var(--cinza2);
+    }
 }

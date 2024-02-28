@@ -5,28 +5,30 @@
 	color: var(--texto)
 }
 
-.etiqueta {
+.label {
 	font-weight: 500;
 	line-height: 20px;
 	color: var(--cinza6)
 }
 
-.input {
-	display: block;
+.inputContainer {
 	border: 2px solid var(--cinza2);
 	background-color: var(--bg-principal);
 	border-radius: 20px;
 	width: 100%;
 	padding: 1em;
 	margin-top: .5em;
-	transition: border ease-out .3s;
+    display: flex;
 }
 
-.input:focus-visible {
-	outline: 2px solid var(--accent-color);
-	border-color: var(--accent-color);
+.inputOculto {
+    width: 0;
 }
 
-.input::placeholder {
-	color: var(--cinza5)
+.inputOculto:focus {
+    outline: none;
+}
+
+.inputContainer:has(.inputOculto:focus) {
+    outline: 2px solid var(--accent-color);
 }

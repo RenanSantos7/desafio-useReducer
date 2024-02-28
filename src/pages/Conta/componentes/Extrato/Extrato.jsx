@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import styles from './Extrato.module.css'
 
 export default function Extrato({ contaSelecionada }) {
@@ -21,8 +22,8 @@ export default function Extrato({ contaSelecionada }) {
                                 <td>{transacao._id}</td>
                                 <td>{transacao._tipo}</td>
                                 <td>{Number(transacao._valor).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</td>
-                                <td>{transacao._idOrigem}</td>
-                                <td>{transacao._idDestino || '-'}</td>
+                                <td>{transacao._idOrigem === contaSelecionada._id ? `${contaSelecionada._id} (esta conta)` : transacao._idOrigem}</td>
+                                <td>{transacao._idDestino === contaSelecionada._id ? `${contaSelecionada._id} (esta conta)` : transacao._idDestino}</td>
                             </tr>
                         ))
 

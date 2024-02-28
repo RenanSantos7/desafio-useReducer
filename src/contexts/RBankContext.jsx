@@ -11,8 +11,10 @@ export const RBankProvider = ({ children }) => {
     const [transacoes, setTransacoes] = useState([])
 
     const conta1 = new Conta(6878, { nome: 'Fulano de Tal' })
-    const contasLocalSt = carregarDoLocalStorage("contas") || []
-    const estadoInicial = [conta1, contasLocalSt]
+    const contasLocalSt = carregarDoLocalStorage('contas') || []
+    
+    const estadoInicial = conta1._saldo === 0 ? [conta1, ...contasLocalSt] : [...contasLocalSt]
+    
     const [contas, dispatch] = useReducer(transacoesReducer, estadoInicial)
 
     function geraIdUnico(tipo) {
@@ -21,20 +23,20 @@ export const RBankProvider = ({ children }) => {
         if (tipo === 'conta') {
             do {
                 idGerado = Math.floor(Math.random() * 1000)
-            } while (contas.some(conta => conta.id === idGerado))
+            } while (contas.some(conta => conta._id === idGerado))
         }
 
         if (tipo === 'transacao') {
             do {
                 idGerado = Math.floor(Math.random() * 100000)
-            } while (transacoes.some(transacao => transacao.id === idGerado))
+            } while (transacoes.some(transacao => transacao._id === idGerado))
         }
 
         return idGerado
     }
 
     function existeConta(id) {
-        return contas.some(conta => conta._id === id)
+        return contas.some(conta => conta._id == id)
     }
 
     const criarConta = useCallback(pessoa => {
@@ -108,15 +110,14 @@ export const RBankProvider = ({ children }) => {
             console.error('Conta de destino não encontrada. Verifique o ID informado')
         } else {
             dispatch({
-                tipo: 'trasferencia',
+                tipo: 'transferencia',
                 valor: valor,
                 idOrigem: idOrigem,
                 idDestino: idDestino
             })
             setTransacoes(prev => [...prev, novaTransacao])
-            console.log(transacoes)
         }
-
+        
     }, [contas, dispatch, transacoes])
 
     // % Efeitos
@@ -128,9 +129,9 @@ export const RBankProvider = ({ children }) => {
     }, [transacoes])
 
     useEffect(() => {
-        salvarNoLocalStorage('contas', contas)
+        const contasCriadas = conta1._saldo === 0 ? contas.filter(conta => conta._id !== 6878) : contas
+        salvarNoLocalStorage('contas', contasCriadas)
     }, [contas])
-
 
     // % Retornos
     return (

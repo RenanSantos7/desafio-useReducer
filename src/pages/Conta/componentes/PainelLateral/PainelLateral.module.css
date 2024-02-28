@@ -1,0 +1,15 @@
+.painelLateral {
+    width: 200px;
+    background-color: var(--cinza1);
+    padding: 1.5rem 1rem;
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.infoConta {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
