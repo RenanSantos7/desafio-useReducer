@@ -9,5 +9,4 @@ Requisitos:
 - transferir entre contas
 
 Dica: 
-- estado global consiste em objeto com as pro-
-  priedades **saldo**, **extrato**, **transacoes**
+- estado global consiste em objeto com as propriedades **saldo**, **extrato**, **transacoes**
